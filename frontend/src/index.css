@@ -1,1 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+
+/* Global Styles */
+body{
+    background-color: #2B2B2B;
+    font-family: 'Inter', sans-serif;
+    @apply text-white m-0 p-0;
+}
+
+.button-bg {
+    @apply border border-gray-500 px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-[#302f2f];
+}
+
+.colored-button {
+    @apply border bg-gradient-to-r from-[#397139] to-[#70b784] px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-gradient-to-r hover:from-[#295429] hover:to-[#5d986d]
+}
