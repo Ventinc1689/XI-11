@@ -4,17 +4,20 @@ import Landing from '../Landing/Landing'
 import Navbar from './Navbar'
 import Login from '../Landing/Login'
 import Signup from '../Landing/Signup'
+import { AuthProvider } from '../../context/AuthContext'
 
 const App = () => {
     return (
         <Router>
-            <Navbar />
+            <AuthProvider>
+                <Navbar />
 
-            <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-            </Routes>
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                </Routes>
+            </AuthProvider>
         </Router>
     )
 }
