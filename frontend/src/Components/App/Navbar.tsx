@@ -1,16 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 const Navbar = () => {
     const navigate = useNavigate()
+    const { user, loading } = useAuth()
     
     const navOptions = [
         { name: 'Home', path: '/' },
         { name: 'Rankings', path: '/'},
         { name: 'Community', path: '/'},
         { name: 'My XI', path: '/'},
-        { name: 'Contact', path: '/'},
-        { name: 'Login', path: '/login'}
+        { name: 'Contact', path: '/'}
     ]
 
     return (
@@ -21,12 +22,31 @@ const Navbar = () => {
                 <h1 className="text-2xl font-bold flex">XI<span className="ml-0.5 text-emerald-500">11</span></h1>
 
                 {/* Navigation Links */}
-                <ul className="flex flex-row items-center ml-auto space-x-8 text-gray-400 font-semibold">
+                <ul className="flex flex-row items-center ml-auto space-x-10 text-gray-400 font-semibold">
                     {navOptions.map((option) => (
-                        <li key={option.name} onClick={() => navigate(option.path)} className={`hover:cursor-pointer hidden md:block ${option.path === '/login' ? 'colored-button' : ''}`}>
+                        <li key={option.name} onClick={() => navigate(option.path)} className='hover:cursor-pointer hidden md:block'>
                             {option.name}
                         </li>
                     ))}
+
+                    {!loading && (
+                        user ? (
+                            <div className='hover:cursor-pointer flex flex-row items-center space-x-2 md:border-l border-gray-500 pl-6' onClick={() => navigate('/settings')}>
+                                <span>{user.user_metadata.username}</span>
+                                <img 
+                                    src={user.user_metadata.avatar_url || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}
+                                    alt="User Avatar"
+                                    className="w-10 h-10 rounded-full"
+                                />
+                            </div>
+                        )
+
+                        : (
+                            <li onClick={() => navigate('/login')} className="hover:cursor-pointer colored-button">
+                                Login
+                            </li>
+                        )
+                    )}
 
                 </ul>
 
