@@ -9,9 +9,14 @@ body{
 }
 
 .button-bg {
-    @apply border border-gray-500 px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-[#302f2f];
+    @apply border border-gray-500 px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-[#363636];
 }
 
 .colored-button {
-    @apply border bg-gradient-to-r from-[#397139] to-[#70b784] px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-gradient-to-r hover:from-[#295429] hover:to-[#5d986d]
+    @apply border bg-gradient-to-r from-[#397139] to-[#529866] px-4 py-2 rounded-lg text-white hover:cursor-pointer hover:bg-gradient-to-r hover:from-[#295429] hover:to-[#4c8f5e]
+}
+
+/* Hide scrollbar for all browsers */
+::-webkit-scrollbar {
+  display: none; 
 }

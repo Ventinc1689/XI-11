@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,7 +8,7 @@ const Settings = () => {
     const handleSignOut = async () => {
         try {
             await signOut()
-            navigate('/home')
+            navigate('/')
         } catch {
             console.error('Error signing out')
         }
