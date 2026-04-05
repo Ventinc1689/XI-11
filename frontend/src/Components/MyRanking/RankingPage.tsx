@@ -1,28 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import RankingTable from './RankingTable'
 import PlayerPool from './PlayerPool'
-import { PlayerService } from '../../services/playerService'
 
 const RankingPage = () => {
     const [mobileTab, setMobileTab] = useState<'rankings' | 'pool'>('rankings')
-    const [players, setPlayers] = useState<any[]>([])
-    const [error, setError] = useState<string | null>(null)
-    const [loading, setLoading] = useState<boolean>(true)
-
-    useEffect(() => {
-        const fetchAllPlayers = async () => {
-            try {
-                setLoading(true)
-                const players = await PlayerService.getAllPlayers()
-                setPlayers(Array.isArray(players.data) ? players.data : players.data.players ?? [])
-            } catch (error: any) {
-                setError(error.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchAllPlayers()
-    }, [])
 
     return (
         <div className='flex flex-col mt-20 p-6'>
@@ -54,10 +35,7 @@ const RankingPage = () => {
 
                 {/* Right panel — same logic */}
                 <div className={`md:block md:w-1/2 ${mobileTab === 'pool' ? 'block' : 'hidden'}`}>
-                    <PlayerPool 
-                        players={players}
-                        setPlayers={setPlayers}
-                    />
+                    <PlayerPool />
                 </div>
 
             </div>

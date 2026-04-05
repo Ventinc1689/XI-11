@@ -27,12 +27,15 @@ app.use(express.json())
 
 // ==========================================
 // Routes
-// Mount the players router at /api/players
-// So GET /api/players → players.ts router
 // ==========================================
+
+// Player-related routes
 app.use('/api/players', playerRoutes)
 
+
+// Auth-related routes (register, login, etc.)
 app.use('/api/auth', authRoutes)
+
 
 // Root route to check if the server is running
 app.get('/', (req, res) => {

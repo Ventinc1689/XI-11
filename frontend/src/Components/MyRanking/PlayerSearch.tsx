@@ -1,11 +1,7 @@
 import React from 'react'
+import type { PlayerSearchResponse } from '../../types/player'
 
-type PlayerSearchProps = {
-    searchTerm: string
-    setSearchTerm: React.Dispatch<React.SetStateAction<string>>
-}
-
-const PlayerSearch = ({ searchTerm, setSearchTerm }: PlayerSearchProps) => {
+const PlayerSearch = ({ searchTerm, setSearchTerm }: PlayerSearchResponse) => {
     return (
         <div className='md:mt-3'>
             <input 
