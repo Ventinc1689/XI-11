@@ -1,4 +1,5 @@
 import PlayerSearch from './PlayerSearch'
+import PlayerList from './PlayerList'
 import { useState } from 'react'
 import { usePlayers } from '../../hooks/usePlayers'
 
@@ -7,41 +8,44 @@ const PlayerPool = () => {
     const [search, setSearch] = useState('')
     const { players, loading, error } = usePlayers(search, position)
 
-    const positions = ['All', 'ST', 'LW', 'RW', 'CM', 'CDM', 'CAM', 'LB', 'RB', 'CB', 'GK']
+    const positions = ['All', 'ST', 'LW', 'RW', 'CM', 'CAM', 'CDM', 'CB', 'LB', 'RB', 'GK']
 
     return (
-        <div className='md:pl-6'>
-            <span className='hidden md:block text-[18px] lg:text-[22px] font-bold text-emerald-500'>Player Pool</span>
+        <div className='md:pl-6 flex flex-col flex-1 min-h-0'>
+            <div className='shrink-0'>
+                <span className='hidden md:block text-[18px] lg:text-[22px] font-bold text-emerald-500'>Player Pool</span>
 
-            <PlayerSearch 
-                searchTerm={search} 
-                setSearchTerm={setSearch} 
-            />
+                {/* Search Bar */}
+                <PlayerSearch 
+                    searchTerm={search} 
+                    setSearchTerm={setSearch} 
+                />
 
-            <div className='flex flex-row gap-2 mt-4 overflow-x-auto whitespace-nowrap'>
-                {positions.map((pos) => (
-                    <button 
-                        key={pos} 
-                        onClick={() => setPosition(pos)}
-                        className={`px-3 py-1 rounded-lg text-sm hover:cursor-pointer ${position === pos ? 'bg-emerald-500 text-white' : 'bg-[#393939] text-gray-400 border border-gray-500'}`}
-                    >
-                        {pos}
-                    </button>
-                ))}
+                {/* Position Filters */}
+                <div className='flex flex-row gap-2 mt-4 overflow-x-auto whitespace-nowrap'>
+                    {positions.map((pos) => (
+                        <button 
+                            key={pos} 
+                            onClick={() => setPosition(pos)}
+                            className={`px-3 py-1 rounded-xl text-sm hover:cursor-pointer shrink-0 ${position === pos ? 'bg-emerald-500 text-white font-bold' : 'bg-[#393939] text-gray-400 border border-gray-500'}`}
+                        >
+                            {pos}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             {/* Player list */}
-            {players.map((player) => (
-                <div key={player.id} className='flex flex-row items-center justify-between mt-4 p-3 rounded-lg bg-[#393939] text-white border-2 border-gray-500'>
-                    <div>
-                        <div className='text-[16px] font-bold'>{player.name}</div>
-                        <div className='text-[12px] text-gray-400'>{player.clubs.join(', ')} - {player.positions.join(', ')}</div>
+            <div className='mt-4 flex-1 overflow-y-auto'>
+                {/* Loading State */}
+                {loading ? 
+                    <div className='flex mt-25 items-center justify-center'>
+                        <span className='text-gray-400 mt-4'>Loading players...</span>
                     </div>
-                    <button className='px-3 py-1 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600'>
-                        Add
-                    </button>
-                </div>
-            ))}
+                : 
+                    <PlayerList players={players} />
+                }
+            </div>
 
         </div>
     )

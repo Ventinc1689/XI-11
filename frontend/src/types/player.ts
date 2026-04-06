@@ -9,6 +9,10 @@ export interface Player {
     positions: string[]
 }
 
+export interface PlayerListResponse {
+    players: Player[]
+}
+
 // Filters for player search
 export interface PlayerFilters {
     search?: string
