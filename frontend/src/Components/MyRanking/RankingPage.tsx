@@ -1,14 +1,31 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import RankingTable from './RankingTable'
 import PlayerPool from './PlayerPool'
+import OptionDropDown from './OptionDropDown'
 
 const RankingPage = () => {
     const [mobileTab, setMobileTab] = useState<'rankings' | 'pool'>('rankings')
+    const [selectedOption, setSelectedOption] = useState('Top 25')
+    const [dropdownOpen, setDropdownOpen] = useState(false)
 
     return (
-        <div className='flex flex-col h-screen mt-18 p-6'>
-            <h1 className='text-[22px] md:text-[28px] font-bold'>Your Top 25</h1>
-            <span className='text-[12px] md:text-[16px] text-gray-400 mt-1'>6 of 25 filled</span>
+        <div className='flex flex-col h-screen mt-18 p-6 '>
+
+            {/* Header with title and ranking options */}
+            <div className='flex flex-row w-full'>
+                <div className='flex flex-col flex-1'>
+                    <h1 className='text-[22px] md:text-[28px] font-bold'>Your Top 25</h1>
+                    <span className='text-[12px] md:text-[16px] text-gray-400'>6 of 25 filled</span>
+                </div>
+
+                {/* Dropdown for ranking options */}
+                <OptionDropDown 
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                    dropdownOpen={dropdownOpen}
+                    setDropdownOpen={setDropdownOpen}
+                />
+            </div>
 
             {/* Mobile Tabs */}
             <div className='lg:hidden flex flex-row mt-6'>

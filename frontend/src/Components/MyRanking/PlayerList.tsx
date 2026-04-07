@@ -19,10 +19,16 @@ const PlayerList = ({ players }: PlayerListResponse) => {
             {players.map((player) => (
                 <div key={player.id} className='flex flex-row items-center justify-between mt-4 p-3 rounded-lg bg-[#393939] text-white border-2 border-gray-500'>
 
-                    {/*  */}
-                    <div className='rounded-full p-5 bg-[#383939] border-2 border-gray-500 mr-3' >
-
-                    </div>
+                    {/* Player Flag */}
+                    {player.country_code ? (
+                        <img 
+                            src={`https://flagcdn.com/w40/${player.country_code}.png`}
+                            alt={player.nationality}
+                            className="w-7 h-5 rounded object-cover mr-4"
+                        />
+                    ) : (
+                        <div className="w-7 h-5 rounded bg-gray-600 mr-4" />
+                    )}
 
                     {/* Player Info */}
                     <div className='mr-6'>
@@ -40,7 +46,7 @@ const PlayerList = ({ players }: PlayerListResponse) => {
                     </div>
 
                     {/* Add button */}
-                    <button className='px-3 py-1 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 text-[18px] font-bold hover:cursor-pointer'>
+                    <button className='px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 hover:bg-emerald-200/10 border border-emerald-400 text-[18px] font-bold hover:cursor-pointer'>
                         +
                     </button>
                 </div>
