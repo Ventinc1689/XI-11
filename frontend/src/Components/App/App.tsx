@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import Login from '../Landing/Login'
 import Signup from '../Landing/Signup'
 import Settings from '../AccountSettings/Settings'
-import RankingPage from '../MyRanking/RankingPage'
+import RankingPage from '../MyRanking/RankingPage/RankingPage'
 import { AuthProvider } from '../../context/AuthContext'
 import ProtectedRoute from './ProtectedRoute'
 
@@ -19,7 +19,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-                    <Route path="/ranking" element={<RankingPage /> } />
+                    <Route path="/ranking" element={<ProtectedRoute><RankingPage /></ProtectedRoute>} />
                 </Routes>
             </AuthProvider>
         </Router>

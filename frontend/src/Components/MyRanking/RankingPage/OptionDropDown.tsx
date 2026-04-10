@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import type { RankingOption } from '../../types/player'
+import type { RankingOption } from '../../../types/player'
 
 const OptionDropDown = ({ selectedOption, setSelectedOption, dropdownOpen, setDropdownOpen }: RankingOption) => {
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -16,7 +16,7 @@ const OptionDropDown = ({ selectedOption, setSelectedOption, dropdownOpen, setDr
     }, [])
 
     // Ranking options for the dropdown
-    const rankingOptions = ['Top 25', 'Active', 'Strikers', 'Midfielders', 'Defenders', 'Goalkeepers']
+    const rankingOptions = ['Top 25', 'Active', 'Forwards', 'Midfielders', 'Defenders', 'Goalkeepers']
 
     return (
         <div className='flex flex-col flex-1 items-end justify-center gap-1'>

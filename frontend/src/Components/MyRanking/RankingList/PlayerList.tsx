@@ -1,6 +1,8 @@
-import type { PlayerListResponse } from '../../types/player'
+import type { PlayerListResponse } from '../../../types/player'
 
-const PlayerList = ({ players }: PlayerListResponse) => {
+const PlayerList = ({ players, onAdd }: PlayerListResponse) => {
+
+    // Helper function to determine badge color based on position
     const getPositionColor = (pos: string) => {
         const forwards = ['ST', 'LW', 'RW']
         const midfielders = ['CM', 'CAM', 'CDM']
@@ -15,9 +17,13 @@ const PlayerList = ({ players }: PlayerListResponse) => {
     }
 
     return (
-        <div>
-            {players.map((player) => (
-                <div key={player.id} className='flex flex-row items-center justify-between mt-4 p-3 rounded-lg bg-[#393939] text-white border-2 border-gray-500'>
+        <div className=''>
+            {players.map((player, index) => (
+                <div
+                    key={player.id}
+                    className='flex flex-row items-center justify-between mt-4 p-3 rounded-lg bg-[#393939] text-white border-2 border-gray-500 transition-all duration-300 ease-out opacity-0 animate-[fadeSlideIn_0.3s_ease-out_forwards]'
+                    style={{ animationDelay: `${index * 50}ms` }}
+                >
 
                     {/* Player Flag */}
                     {player.country_code ? (
@@ -46,7 +52,7 @@ const PlayerList = ({ players }: PlayerListResponse) => {
                     </div>
 
                     {/* Add button */}
-                    <button className='px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 hover:bg-emerald-200/10 border border-emerald-400 text-[18px] font-bold hover:cursor-pointer'>
+                    <button className='px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 hover:bg-emerald-200/10 border border-emerald-400 text-[18px] font-bold hover:cursor-pointer transition-all duration-200 hover:scale-110 active:scale-95' onClick={() => onAdd(player.id)}>
                         +
                     </button>
                 </div>

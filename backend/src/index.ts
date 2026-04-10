@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors' 
 import playerRoutes from './routes/players'
 import authRoutes from './routes/auth'
+import rankingRoutes from './routes/ranking'
 
 dotenv.config()
 const app = express()
@@ -35,6 +36,10 @@ app.use('/api/players', playerRoutes)
 
 // Auth-related routes (register, login, etc.)
 app.use('/api/auth', authRoutes)
+
+
+// Ranking-related routes
+app.use('/api/ranking', rankingRoutes)
 
 
 // Root route to check if the server is running

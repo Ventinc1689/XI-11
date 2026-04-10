@@ -1,5 +1,5 @@
 import React from 'react'
-import type { PlayerSearchResponse } from '../../types/player'
+import type { PlayerSearchResponse } from '../../../types/player'
 
 const PlayerSearch = ({ searchTerm, setSearchTerm }: PlayerSearchResponse) => {
     return (
